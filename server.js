@@ -11,8 +11,8 @@ const chatRoutes = require('./routes/chatRoutes');
 // Initialize express app
 const app = express();
 
-// Connect to MongoDB
-connectDB();
+// Connect to MongoDB (async, won't block serverless startup)
+connectDB().catch(err => console.error('MongoDB connection failed:', err));
 
 // Configure CORS for production
 const corsOptions = {
